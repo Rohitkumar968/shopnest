@@ -1,0 +1,77 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * { @apply box-border; }
+  body {
+    @apply font-sans bg-gray-50 text-gray-900 dark:bg-dark-bg dark:text-dark-text transition-colors duration-300;
+  }
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { @apply bg-gray-100 dark:bg-dark-surface; }
+  ::-webkit-scrollbar-thumb { @apply bg-gray-300 dark:bg-gray-600 rounded-full; }
+  ::-webkit-scrollbar-thumb:hover { @apply bg-primary-500; }
+}
+
+@layer components {
+  /* ── Buttons ── */
+  .btn-primary {
+    @apply bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-white font-semibold px-6 py-2.5 rounded-xl transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2 shadow-sm;
+  }
+  .btn-secondary {
+    @apply bg-gray-100 hover:bg-gray-200 dark:bg-dark-surface dark:hover:bg-dark-border text-gray-700 dark:text-gray-300 font-semibold px-6 py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2;
+  }
+  .btn-outline {
+    @apply border-2 border-primary-500 text-primary-500 hover:bg-primary-500 hover:text-white font-semibold px-6 py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2;
+  }
+  .btn-navy {
+    @apply bg-gray-800 hover:bg-gray-900 text-white font-semibold px-6 py-2.5 rounded-xl transition-all duration-200 flex items-center justify-center gap-2;
+  }
+
+  /* ── Cards ── */
+  .card {
+    @apply bg-white dark:bg-dark-surface rounded-2xl shadow-sm border border-gray-100 dark:border-dark-border transition-all duration-200;
+  }
+  .product-card {
+    @apply bg-white dark:bg-dark-surface rounded-xl shadow-sm border border-gray-100 dark:border-dark-border overflow-hidden cursor-pointer hover:shadow-md hover:-translate-y-0.5 transition-all duration-200;
+  }
+
+  /* ── Form ── */
+  .input-field {
+    @apply w-full px-4 py-3 rounded-xl border border-gray-200 dark:border-dark-border bg-white dark:bg-dark-surface text-gray-900 dark:text-gray-100 placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary-500 focus:border-transparent transition-all duration-200;
+  }
+
+  /* ── Misc ── */
+  .badge {
+    @apply inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium;
+  }
+  .section-title {
+    @apply text-2xl md:text-3xl font-display font-bold text-gray-900 dark:text-white;
+  }
+  .container-custom {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  .star-rating {
+    @apply flex items-center gap-0.5;
+  }
+
+  /* ── Navbar ── */
+  .nav-top {
+    @apply bg-white dark:bg-dark-surface border-b border-gray-200 dark:border-dark-border;
+  }
+  .nav-cat {
+    @apply bg-gray-50 dark:bg-dark-bg border-b border-gray-200 dark:border-dark-border;
+  }
+  .nav-cat-link {
+    @apply px-3 py-2 text-sm font-medium text-gray-600 dark:text-gray-400 hover:text-primary-500 dark:hover:text-primary-400 rounded transition-colors whitespace-nowrap;
+  }
+  .nav-cat-link-active {
+    @apply px-3 py-2 text-sm font-medium text-primary-500 dark:text-primary-400 bg-primary-50 dark:bg-primary-900/20 rounded whitespace-nowrap;
+  }
+}
+
+.skeleton {
+  @apply bg-gray-200 dark:bg-gray-700 animate-pulse rounded;
+}
+.slick-dots li button:before { @apply text-primary-500; }
+.slick-prev, .slick-next { @apply z-10; }
