@@ -1,33 +1,61 @@
 import { Link } from 'react-router-dom';
 import {
-  FiInstagram, FiTwitter, FiFacebook, FiYoutube,
-  FiMail, FiPhone, FiMapPin, FiArrowRight,
+  FiGithub,
+  FiLinkedin,
+  FiInstagram,
+  FiTwitter,
+  FiMail,
+  FiPhone,
+  FiMapPin,
+  FiArrowUpRight,
+  FiHeart,
+  FiSend,
 } from 'react-icons/fi';
 
-const CATEGORIES = ['Electronics', 'Clothing', 'Books', 'Home & Garden', 'Sports', 'Beauty', 'Toys'];
+const CATEGORIES = [
+  'Electronics',
+  'Clothing',
+  'Books',
+  'Home & Garden',
+  'Sports',
+  'Beauty',
+  'Toys',
+];
 
 const SHOP_LINKS = [
-  ['All Products',    '/products'],
-  ['Featured Deals',  '/products?sort=rating'],
-  ['New Arrivals',    '/products?sort=newest'],
-  ['My Orders',       '/orders'],
-  ['My Wishlist',     '/wishlist'],
+  ['All Products', '/products'],
+  ['Featured Deals', '/products?sort=rating'],
+  ['New Arrivals', '/products?sort=newest'],
+  ['My Orders', '/orders'],
+  ['My Wishlist', '/wishlist'],
 ];
 
-const SOCIAL = [
-  { Icon: FiInstagram, label: 'Instagram' },
-  { Icon: FiTwitter,   label: 'Twitter'   },
-  { Icon: FiFacebook,  label: 'Facebook'  },
-  { Icon: FiYoutube,   label: 'YouTube'   },
+const SOCIAL_LINKS = [
+  {
+    Icon: FiGithub,
+    label: 'GitHub',
+    href: 'https://github.com/Rohitkumar968',
+  },
+  {
+    Icon: FiLinkedin,
+    label: 'LinkedIn',
+    href: 'https://linkedin.com/in/rohitkumar58',
+  },
+  {
+    Icon: FiInstagram,
+    label: 'Instagram',
+    href: '#',
+  },
+  {
+    Icon: FiTwitter,
+    label: 'Twitter',
+    href: '#',
+  },
 ];
-
-const LEGAL = ['Privacy Policy', 'Terms & Conditions', 'Cookie Policy'];
-
-/* ── Reusable sub-components ─────────────────────────────────────── */
 
 const ColHeading = ({ children }) => (
-  <h3 className="text-xs font-semibold text-gray-400 uppercase tracking-[0.12em] mb-5 flex items-center gap-2">
-    <span className="inline-block w-4 h-px bg-primary-500 rounded-full" />
+  <h3 className="mb-5 flex items-center gap-2 text-xs font-bold uppercase tracking-[0.16em] text-gray-300">
+    <span className="h-px w-5 bg-primary-500" />
     {children}
   </h3>
 );
@@ -36,157 +64,256 @@ const FooterLink = ({ to, children }) => (
   <li>
     <Link
       to={to}
-      className="group inline-flex items-center gap-1.5 text-sm text-gray-400 hover:text-primary-400 transition-colors duration-200"
+      className="group inline-flex items-center gap-1.5 text-sm text-gray-400 transition-all duration-200 hover:translate-x-1 hover:text-primary-400"
     >
-      <FiArrowRight
-        size={11}
-        className="opacity-0 -translate-x-1 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-200 text-primary-500"
+      <FiArrowUpRight
+        size={12}
+        className="opacity-0 -translate-x-1 text-primary-500 transition-all duration-200 group-hover:translate-x-0 group-hover:opacity-100"
       />
       {children}
     </Link>
   </li>
 );
 
-/* ── Main Footer ─────────────────────────────────────────────────── */
+const Footer = () => {
+  const currentYear = new Date().getFullYear();
 
-const Footer = () => (
-  <footer className="bg-gray-900 text-gray-300 mt-16 border-t border-gray-800/60">
+  return (
+    <footer className="relative mt-16 overflow-hidden border-t border-gray-800/70 bg-[#09090b] text-gray-300">
 
-    {/* ── Top accent line ── */}
-    <div className="h-px bg-gradient-to-r from-transparent via-primary-500/50 to-transparent" />
+      {/* Premium top glow */}
+      <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary-500 to-transparent" />
 
-    <div className="container-custom pt-14 pb-10">
+      <div className="pointer-events-none absolute -left-32 top-20 h-64 w-64 rounded-full bg-primary-500/5 blur-3xl" />
+      <div className="pointer-events-none absolute -right-32 bottom-10 h-64 w-64 rounded-full bg-primary-500/5 blur-3xl" />
 
-      {/* ── Main grid ── */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 lg:gap-8">
+      <div className="container-custom relative py-14">
 
-        {/* Brand column */}
-        <div className="sm:col-span-2 lg:col-span-1">
-          {/* Logo */}
-          <Link to="/" className="inline-flex items-center gap-2.5 mb-5 group">
-            <div className="w-9 h-9 bg-gradient-to-br from-primary-500 to-primary-600 rounded-xl flex items-center justify-center shadow-lg shadow-primary-900/40 group-hover:shadow-primary-500/30 transition-shadow duration-300">
-              <span className="text-white font-bold text-sm font-display">S</span>
-            </div>
-            <span className="font-display font-bold text-xl text-white">
-              Shop<span className="text-primary-400">Nest</span>
-            </span>
-          </Link>
+        {/* Main footer */}
+        <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-4 lg:gap-10">
 
-          {/* Tagline */}
-          <p className="text-sm text-gray-400 leading-relaxed mb-6 max-w-xs">
-            Your premium destination for quality products across all categories.
-            Shop smarter, live better.
-          </p>
+          {/* Brand */}
+          <div className="sm:col-span-2 lg:col-span-1">
 
-          {/* Social icons */}
-          <div className="flex items-center gap-2.5">
-            {SOCIAL.map(({ Icon, label }) => (
-              <a
-                key={label}
-                href="#"
-                aria-label={label}
-                className="w-9 h-9 rounded-xl bg-gray-800 border border-gray-700/60 flex items-center justify-center text-gray-400 hover:bg-primary-500 hover:border-primary-500 hover:text-white hover:scale-105 transition-all duration-200"
-              >
-                <Icon size={15} />
-              </a>
-            ))}
-          </div>
-        </div>
-
-        {/* Shop column */}
-        <div>
-          <ColHeading>Shop</ColHeading>
-          <ul className="space-y-3">
-            {SHOP_LINKS.map(([label, to]) => (
-              <FooterLink key={label} to={to}>{label}</FooterLink>
-            ))}
-          </ul>
-        </div>
-
-        {/* Categories column */}
-        <div>
-          <ColHeading>Categories</ColHeading>
-          <ul className="space-y-3">
-            {CATEGORIES.map((cat) => (
-              <FooterLink key={cat} to={`/products?category=${encodeURIComponent(cat)}`}>
-                {cat}
-              </FooterLink>
-            ))}
-          </ul>
-        </div>
-
-        {/* Contact + Newsletter column */}
-        <div>
-          <ColHeading>Contact Us</ColHeading>
-          <ul className="space-y-3.5 mb-7">
-            <li className="flex items-start gap-2.5 text-sm text-gray-400">
-              <span className="mt-0.5 w-6 h-6 rounded-lg bg-gray-800 border border-gray-700/60 flex items-center justify-center shrink-0">
-                <FiMapPin size={12} className="text-primary-400" />
-              </span>
-              <span className="leading-relaxed">123 Commerce Street,<br />Mumbai, India</span>
-            </li>
-            <li className="flex items-center gap-2.5 text-sm text-gray-400">
-              <span className="w-6 h-6 rounded-lg bg-gray-800 border border-gray-700/60 flex items-center justify-center shrink-0">
-                <FiPhone size={12} className="text-primary-400" />
-              </span>
-              +91 98765 43210
-            </li>
-            <li className="flex items-center gap-2.5 text-sm text-gray-400">
-              <span className="w-6 h-6 rounded-lg bg-gray-800 border border-gray-700/60 flex items-center justify-center shrink-0">
-                <FiMail size={12} className="text-primary-400" />
-              </span>
-              support@shopnest.in
-            </li>
-          </ul>
-
-          {/* Newsletter */}
-          <p className="text-xs font-medium text-gray-400 uppercase tracking-wider mb-3">
-            Newsletter
-          </p>
-          <div className="flex gap-2">
-            <input
-              type="email"
-              placeholder="your@email.com"
-              className="flex-1 min-w-0 px-3.5 py-2.5 bg-gray-800 border border-gray-700/60 rounded-xl text-sm text-white placeholder-gray-500 focus:outline-none focus:border-primary-500 focus:ring-1 focus:ring-primary-500/30 transition-all duration-200"
-            />
-            <button className="px-4 py-2.5 bg-primary-500 hover:bg-primary-600 active:bg-primary-700 text-white rounded-xl text-sm font-semibold transition-colors duration-200 shrink-0">
-              Go
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* ── Divider ── */}
-      <div className="mt-12 mb-6 h-px bg-gradient-to-r from-transparent via-gray-700/80 to-transparent" />
-
-      {/* ── Bottom bar ── */}
-      <div className="flex flex-col items-center gap-4">
-
-        {/* Legal links */}
-        <div className="flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
-          {LEGAL.map((item) => (
-            <a
-              key={item}
-              href="#"
-              className="text-xs text-gray-500 hover:text-gray-300 transition-colors duration-200"
+            <Link
+              to="/"
+              className="group mb-5 inline-flex items-center gap-3"
             >
-              {item}
-            </a>
-          ))}
+              <div className="flex h-11 w-11 items-center justify-center rounded-2xl bg-gradient-to-br from-primary-400 to-primary-600 shadow-lg shadow-primary-900/30 transition-transform duration-300 group-hover:scale-105">
+                <span className="font-display text-lg font-extrabold text-white">
+                  S
+                </span>
+              </div>
+
+              <div>
+                <div className="font-display text-2xl font-extrabold tracking-tight text-white">
+                  Shop<span className="text-primary-400">Nest</span>
+                </div>
+
+                <p className="text-[10px] font-medium uppercase tracking-[0.22em] text-gray-500">
+                  Shop • Discover • Enjoy
+                </p>
+              </div>
+            </Link>
+
+            <p className="mb-6 max-w-sm text-sm leading-7 text-gray-400">
+              Your modern destination for quality products, great deals,
+              and a seamless online shopping experience.
+            </p>
+
+            {/* Social links */}
+            <div className="flex items-center gap-2.5">
+              {SOCIAL_LINKS.map(({ Icon, label, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href !== '#' ? '_blank' : undefined}
+                  rel={href !== '#' ? 'noopener noreferrer' : undefined}
+                  aria-label={label}
+                  title={label}
+                  className="flex h-10 w-10 items-center justify-center rounded-xl border border-gray-800 bg-gray-900 text-gray-400 transition-all duration-300 hover:-translate-y-1 hover:border-primary-500/50 hover:bg-primary-500 hover:text-white hover:shadow-lg hover:shadow-primary-500/20"
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Shop */}
+          <div>
+            <ColHeading>Shop</ColHeading>
+
+            <ul className="space-y-3.5">
+              {SHOP_LINKS.map(([label, to]) => (
+                <FooterLink key={label} to={to}>
+                  {label}
+                </FooterLink>
+              ))}
+            </ul>
+          </div>
+
+          {/* Categories */}
+          <div>
+            <ColHeading>Categories</ColHeading>
+
+            <ul className="space-y-3.5">
+              {CATEGORIES.map((category) => (
+                <FooterLink
+                  key={category}
+                  to={`/products?category=${encodeURIComponent(category)}`}
+                >
+                  {category}
+                </FooterLink>
+              ))}
+            </ul>
+          </div>
+
+          {/* Contact */}
+          <div>
+            <ColHeading>Get In Touch</ColHeading>
+
+            <div className="space-y-4">
+
+              <div className="flex items-start gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-gray-800 bg-gray-900">
+                  <FiMapPin className="text-primary-400" size={15} />
+                </div>
+
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                    Location
+                  </p>
+                  <p className="mt-1 text-sm text-gray-400">
+                    India
+                  </p>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-gray-800 bg-gray-900">
+                  <FiMail className="text-primary-400" size={15} />
+                </div>
+
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                    Email
+                  </p>
+
+                  <a
+                    href="mailto:support@shopnest.in"
+                    className="mt-1 block text-sm text-gray-400 transition-colors hover:text-primary-400"
+                  >
+                    support@shopnest.in
+                  </a>
+                </div>
+              </div>
+
+              <div className="flex items-center gap-3">
+                <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl border border-gray-800 bg-gray-900">
+                  <FiPhone className="text-primary-400" size={15} />
+                </div>
+
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-gray-500">
+                    Support
+                  </p>
+
+                  <p className="mt-1 text-sm text-gray-400">
+                    Online Support
+                  </p>
+                </div>
+              </div>
+
+            </div>
+          </div>
         </div>
 
-        {/* Copyright */}
-        <p className="text-xs text-gray-500 tracking-wide text-center">
-          <span className="text-gray-400">© 2026 ShopNest. All Rights Reserved.</span>
-          <span className="mx-2 text-gray-600">|</span>
-          <span className="text-gray-500">Built with </span>
-          <span className="text-base leading-none align-middle">❤️</span>
-          <span className="text-primary-400/80 font-medium"> by Rohit</span>
-        </p>
-      </div>
+        {/* Newsletter / CTA */}
+        <div className="mt-12 rounded-2xl border border-gray-800 bg-gradient-to-r from-gray-900/90 to-gray-900/40 p-5 sm:p-6">
 
-    </div>
-  </footer>
-);
+          <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
+
+            <div>
+              <div className="flex items-center gap-2">
+                <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary-500/10">
+                  <FiSend className="text-primary-400" size={14} />
+                </span>
+
+                <h3 className="font-semibold text-white">
+                  Stay in the loop
+                </h3>
+              </div>
+
+              <p className="mt-1 pl-10 text-sm text-gray-500">
+                Get updates about new products and exclusive deals.
+              </p>
+            </div>
+
+            <div className="flex w-full max-w-md gap-2">
+              <input
+                type="email"
+                placeholder="Enter your email"
+                className="min-w-0 flex-1 rounded-xl border border-gray-800 bg-gray-950 px-4 py-3 text-sm text-white outline-none transition-all placeholder:text-gray-600 focus:border-primary-500/60 focus:ring-2 focus:ring-primary-500/10"
+              />
+
+              <button
+                type="button"
+                className="flex shrink-0 items-center gap-2 rounded-xl bg-primary-500 px-5 py-3 text-sm font-semibold text-white transition-all duration-200 hover:bg-primary-600 hover:shadow-lg hover:shadow-primary-500/20 active:scale-95"
+              >
+                Subscribe
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        {/* Divider */}
+        <div className="my-8 h-px bg-gradient-to-r from-transparent via-gray-800 to-transparent" />
+
+        {/* Bottom */}
+        <div className="flex flex-col items-center justify-between gap-4 text-center md:flex-row md:text-left">
+
+          <p className="text-xs text-gray-500">
+            © {currentYear} ShopNest. All rights reserved.
+          </p>
+
+          <div className="flex flex-wrap items-center justify-center gap-5 text-xs text-gray-500">
+            <a href="#" className="transition-colors hover:text-gray-300">
+              Privacy Policy
+            </a>
+
+            <a href="#" className="transition-colors hover:text-gray-300">
+              Terms & Conditions
+            </a>
+
+            <a href="#" className="transition-colors hover:text-gray-300">
+              Cookie Policy
+            </a>
+          </div>
+
+          {/* Developer credit */}
+          <p className="flex items-center gap-1.5 text-xs text-gray-500">
+            Made with
+            <FiHeart
+              size={13}
+              className="fill-primary-500 text-primary-500"
+            />
+            by
+            <a
+              href="https://rohitkumar0-portfolio.netlify.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold text-primary-400 transition-colors hover:text-primary-300"
+            >
+              Rohit Kumar
+            </a>
+          </p>
+
+        </div>
+
+      </div>
+    </footer>
+  );
+};
 
 export default Footer;
