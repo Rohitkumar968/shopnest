@@ -35,6 +35,14 @@ if (process.env.NODE_ENV === 'development') {
   app.use(morgan('dev'));
 }
 
+// Root route
+app.get('/', (req, res) => {
+  res.json({
+    success: true,
+    message: 'ShopNest API is live 🚀',
+  });
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({
@@ -54,11 +62,15 @@ app.use('/api/users', require('./routes/userRoutes'));
 app.use(notFound);
 app.use(errorHandler);
 
+// Port
 const PORT = process.env.PORT || 5000;
 
 app.listen(PORT, () => {
   console.log(
     `\n🚀 Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
   );
-  console.log(`📡 API: http://localhost:${PORT}/api`.cyan);
+
+  console.log(
+    `📡 API: http://localhost:${PORT}/api`.cyan
+  );
 });
